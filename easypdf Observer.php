@@ -92,8 +92,17 @@ class Overcart_BarcodeTesting_Model_Observer
 		/*
 		*for warehouse id from items in the invoice
 		*/
+		//working:
+		// Zend_debug::dump($event->getWarehouseId());die;		
+		$order = $event->getData('order')->getData();	
+		Zend_debug::dump($order['data']->customer_id);//echo '<hr>';//die;
+		$order['data']->setData('customer_id',$event->getWarehouseId());//$event->getWarehouseId()
+		Zend_debug::dump( $order['data']->customer_id);//echo '<hr>';die;
 
-		$order = $event->getData('order')->getData();
+
+
+		//delete all this/...
+		/*$order = $event->getData('order')->getData();
 		$shipment_id = $event->getEntityId();
 		// Zend_debug::dump( $shipment_id);die;
 		$shipmentitems = Mage::getModel('sales/order_shipment')->load($shipment_id)->getAllItems();
@@ -102,6 +111,6 @@ class Overcart_BarcodeTesting_Model_Observer
 		{
 			$item_warehouse_ids[] = Mage::getModel('sales/order_item')->load($item->getOrderItemId())->getWarehouseId();
 		}
-		Zend_debug::dump($item_warehouse_ids);die;
+		Zend_debug::dump($item_warehouse_ids);die;*/
 	}
 }
