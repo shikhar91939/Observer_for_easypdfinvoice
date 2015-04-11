@@ -43,15 +43,17 @@ class Overcart_BarcodeTesting_Model_Observer
 
 		// $order_data  = $order->getData();
 		$customer_id = $order['data']->customer_id;
-		Zend_debug::dump($customer_id);echo '<hr>';die;
+		// Zend_debug::dump($customer_id);echo '<hr>';//die;
 		
 
 		foreach ($item_warehouse_ids as $each_warehouse_id) {
-			$event->setCustomerId($each_warehouse_id);
+			$order['data']->setData('customer_id',$each_warehouse_id);
+			// $event->setCustomerId($each_warehouse_id);//discarded method as wrong version of cust. id
 			break;//just using the warehouse assigned to the 1st item. As all are same
 		}
 		// Zend_debug::dump($event);die;
-		Zend_debug::dump($order->getCustomerId());die;
+		$customer_id = $order['data']->customer_id;
+		// Zend_debug::dump($customer_id);echo '<hr>';die;
 
 		return;
 	}
