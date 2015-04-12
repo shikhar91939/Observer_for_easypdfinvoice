@@ -82,10 +82,23 @@ class Overcart_BarcodeTesting_Model_Observer
 
 		foreach ($order_items as $current_item) // IMPORTANT: this loops over all the items in the order (not invice) 
 		{
-			Zend_debug::dump($current_item->getSku());
-		}die;
+			$product = Mage::getModel('catalog/product')->load($current_item->getProductId());
+			$print_imei_on_invoice = $product->getData('place_imei_in_invoice');
+		
+			//Getting the IMEIs for the current item if printing required
+			if($print_imei_on_invoice == '1')//EDIT: no need of this if statement as {{var item.product.showimeioninvoice}} is checking if we have to show the imei for the product. we can set meta_description of every item now.
+			{
+				$imeis = $current_item->getSerialcode();
+				//var_dump($imeis);
+				//Set your new variable below for each item	
+			}
+			// Zend_debug::dump($print_imei_on_invoice);Zend_debug::dump($imeis);die;
 
+			// Zend_debug::dump($product);die;
+			$product->setMetaDescription($imeis); //this is how the custom variable item.product.serialcode givves barcodes in the pdf template
+			Zend_debug::dump($product -> getMetaDescription());die;
 
+		}
 		
 	}
 }
