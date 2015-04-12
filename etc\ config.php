@@ -18,7 +18,7 @@
     </frontend>
     <global>
      <events>
-            <controller_action_postdispatch_adminhtml_sales_order_shipment_print>
+            <!-- <controller_action_postdispatch_adminhtml_sales_order_shipment_print>
                 <observers>
                     <observer_printShipments>
                         <type>singleton</type>
@@ -26,7 +26,7 @@
                         <method>printShipment</method>
                     </observer_printShipments>
                 </observers>
-            </controller_action_postdispatch_adminhtml_sales_order_shipment_print>
+            </controller_action_postdispatch_adminhtml_sales_order_shipment_print> -->
             <ves_shipment_pdfpro_data_prepare_after>
                 <observers>
                     <observer_easypdfShipment>
