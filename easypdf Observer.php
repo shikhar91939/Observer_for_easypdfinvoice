@@ -61,9 +61,10 @@ class Overcart_BarcodeTesting_Model_Observer
 	function easypdf_invoiceObserver($observer)
 	{
 		$event = $observer->getEvent()->getData('source');
+		$order_id = $event->getOrderId();
 
 		/*
-		*for warehouse id from items in the invoice
+		for warehouse id from items in the invoice...
 		*/
 
 		// Zend_debug::dump($event->getWarehouseId());die;		
@@ -72,6 +73,17 @@ class Overcart_BarcodeTesting_Model_Observer
 		$order['data']->setData('customer_id',$event->getWarehouseId());//$event->getWarehouseId()
 		// Zend_debug::dump( $order['data']->customer_id);//echo '<hr>';die;
 
+
+		/*
+		for checking the attribute show_imei_in_invoice
+		*/
+		
+		$order_items = Mage::getModel('sales/order')->load($order_id)->getAllItems();
+
+		foreach ($order_items as $current_item) // IMPORTANT: this loops over all the items in the order (not invice) 
+		{
+			Zend_debug::dump($current_item->getSku());
+		}die;
 
 
 		
