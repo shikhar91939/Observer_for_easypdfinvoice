@@ -1,7 +1,7 @@
 <?php
 class Overcart_BarcodeTesting_Model_Observer
 {
-	function printShipment($observer)// function called before pdf is downloaded. This is the pdf created when we press the Print button on the Shipment page .
+	function printShipment($observer)// function called before pdf is downloaded. This is the pdf created when we press the Print button on the Shipment page .	
 	{
 		// $event = $observer;//->getEvent()->getData();
 		// Zend_debug::dump($event);
